@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tradición Manabita: comida tradicional de Manabí, preparada con el sabor de la cocina a leña.">
+  <meta name="theme-color" content="#174d20">
+  <title>Tradición Manabita | Sabor auténtico de Manabí</title>
+
+  <style>
+    /* =========================================================
+       1. COLORES Y ESTILOS GENERALES
+       Para cambiar los colores de la marca, modifica estas variables.
+       ========================================================= */
+    :root {
+      --verde: #174d20;
+      --verde-oscuro: #103719;
+      --amarillo: #f4bd35;
+      --marron: #713c20;
+      --madera: #c47a35;
+      --crema: #f6e5bf;
+      --fondo: #fffaf0;
+      --texto: #35251b;
+      --blanco: #ffffff;
+      --sombra: 0 12px 30px rgba(58, 39, 20, .10);
+      --radio: 20px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      color: var(--texto);
+      background: var(--fondo);
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.6;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    a { color: inherit; text-decoration: none; }
+
+    .contenedor {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      color: var(--verde);
+      background: rgba(244, 189, 53, .24);
+      border: 1px solid rgba(196, 122, 53, .28);
+      border-radius: 999px;
+      padding: 6px 13px;
+      font: 700 .78rem/1.3 Arial, sans-serif;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .boton {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 25px;
+      background: var(--amarillo);
+      color: var(--verde-oscuro);
+      font: 800 .95rem Arial, sans-serif;
+      box-shadow: 0 7px 18px rgba(0, 0, 0, .13);
+      transition: transform .2s ease, filter .2s ease;
+      cursor: pointer;
+    }
+
+    .boton:hover { transform: translateY(-3px); filter: brightness(1.04); }
+    .boton:focus-visible, a:focus-visible { outline: 3px solid var(--madera); outline-offset: 4px; }
+
+    /* =========================================================
+       2. ENCABEZADO
+       Cambia el nombre del restaurante en el texto "Tradición Manabita".
+       Reemplaza el archivo logo.png por tu logotipo, conservando ese nombre.
+       Coloca index.html y logo.png dentro de la misma carpeta.
+       ========================================================= */
+    .encabezado {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(255, 250, 240, .96);
+      border-bottom: 1px solid rgba(113, 60, 32, .14);
+      backdrop-filter: blur(12px);
+    }
+
+    .barra {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .marca {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .marca img {
+      width: 62px;
+      height: 62px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .marca-texto strong {
+      display: block;
+      color: var(--verde);
+      font-size: 1.15rem;
+      line-height: 1.15;
+    }
+
+    .marca-texto span {
+      display: block;
+      margin-top: 4px;
+      color: var(--marron);
+      font: 700 .68rem Arial, sans-serif;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .navegacion {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font: 700 .88rem Arial, sans-serif;
+    }
+
+    .navegacion a { transition: color .2s ease; }
+    .navegacion a:hover { color: var(--madera); }
+
+    .menu-movil {
+      display: none;
+      border: 1px solid rgba(23, 77, 32, .2);
+      background: transparent;
+      color: var(--verde);
+      border-radius: 10px;
+      padding: 9px 12px;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+
+    /* =========================================================
+       3. BIENVENIDA / PORTADA
+       ========================================================= */
+    .portada {
+      position: relative;
+      overflow: hidden;
+      padding: 92px 0 100px;
+      background:
+        radial-gradient(circle at 84% 22%, rgba(244,189,53,.28), transparent 25%),
+        radial-gradient(circle at 8% 90%, rgba(23,77,32,.13), transparent 28%),
+        linear-gradient(120deg, #f8e9c9, #fffaf0 58%, #f1d49b);
+    }
+
+    .portada::before, .portada::after {
+      content: "";
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      border: 2px solid rgba(113, 60, 32, .12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .portada::before { top: -130px; right: 12%; }
+    .portada::after { bottom: -160px; left: 8%; width: 300px; height: 300px; }
+
+    .portada-contenido {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      text-align: center;
+      margin: auto;
+    }
+
+    .portada h1 {
+      margin: 18px 0 14px;
+      color: var(--verde);
+      font-size: clamp(2.7rem, 7vw, 5.4rem);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+
+    .portada h1 span { color: var(--marron); }
+
+    .portada p {
+      max-width: 650px;
+      margin: 0 auto 28px;
+      color: #60452f;
+      font-size: clamp(1.05rem, 2vw, 1.22rem);
+    }
+
+    .detalle-portada {
+      margin-top: 23px;
+      color: var(--marron);
+      font: 700 .78rem Arial, sans-serif;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    /* Ilustración decorativa creada con CSS y texto: no depende de imágenes externas. */
+    .ilustracion-comida {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      margin: 30px auto 0;
+      max-width: 420px;
+    }
+
+    .ilustracion-comida span {
+      display: grid;
+      place-items: center;
+      width: 68px;
+      height: 68px;
+      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(113,60,32,.15);
+      border-radius: 50%;
+      box-shadow: var(--sombra);
+      font-size: 2rem;
+    }
+
+    /* =========================================================
+       4. PRESENTACIÓN DE CATEGORÍAS Y PRODUCTOS
+       Para agregar productos, duplica una tarjeta .producto dentro
+       de la categoría correspondiente. Modifica nombre, descripción,
+       ingredientes y precio en cada tarjeta.
+       ========================================================= */
+    .seccion { padding: 76px 0; scroll-margin-top: 95px; }
+
+    .encabezado-seccion {
+      max-width: 700px;
+      margin: 0 auto 38px;
+      text-align: center;
+    }
+
+    .encabezado-seccion h2 {
+      margin: 12px 0 8px;
+      color: var(--verde);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.1;
+    }
+
+    .encabezado-seccion p { margin: 0; color: #725b46; }
+
+    .categoria { margin-top: 45px; }
+
+    .titulo-categoria {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin: 0 0 20px;
+      color: var(--marron);
+      font-size: 1.65rem;
+    }
+
+    .titulo-categoria::after {
+      content: "";
+      height: 1px;
+      flex: 1;
+      background: rgba(113,60,32,.22);
+    }
+
+    .rejilla-productos {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .producto {
+      display: flex;
+      flex-direction: column;
+      min-height: 100%;
+      padding: 23px;
+      background: var(--blanco);
+      border: 1px solid rgba(113,60,32,.12);
+      border-radius: var(--radio);
+      box-shadow: var(--sombra);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .producto:hover { transform: translateY(-5px); box-shadow: 0 17px 35px rgba(58,39,20,.14); }
+
+    .producto-icono {
+      display: grid;
+      place-items: center;
+      width: 58px;
+      height: 58px;
+      margin-bottom: 16px;
+      border-radius: 17px;
+      background: #f8edda;
+      font-size: 2rem;
+    }
+
+    .producto h4 {
+      margin: 0 0 8px;
+      color: var(--verde);
+      font-size: 1.25rem;
+      line-height: 1.2;
+    }
+
+    .producto p { margin: 0 0 12px; color: #685342; font-size: .96rem; }
+
+    .ingredientes {
+      margin-top: auto !important;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(113,60,32,.2);
+      font: .78rem/1.5 Arial, sans-serif !important;
+      color: #806b57 !important;
+    }
+
+    .precio {
+      display: inline-block;
+      align-self: flex-start;
+      margin-top: 14px;
+      padding: 7px 13px;
+      color: var(--verde);
+      background: rgba(244,189,53,.25);
+      border-radius: 999px;
+      font: 800 1.05rem Arial, sans-serif;
+    }
+
+
+    .producto-foto {
+      width: calc(100% + 46px);
+      height: 190px;
+      margin: -23px -23px 18px;
+      object-fit: cover;
+      border-radius: var(--radio) var(--radio) 0 0;
+      background: #ead9bb;
+    }
+
+    .especialidad-foto {
+      width: 100%;
+      height: 210px;
+      margin-bottom: 18px;
+      object-fit: cover;
+      border-radius: 15px;
+      background: #ead9bb;
+    }
+
+    .credito-foto {
+      display: block;
+      margin-top: 9px;
+      color: #9a826b;
+      font: .68rem/1.4 Arial, sans-serif;
+    }
+
+    .credito-foto a { text-decoration: underline; text-underline-offset: 2px; }
+
+    @media (max-width: 640px) {
+      .producto-foto {
+        width: calc(100% + 42px);
+        height: 205px;
+        margin: -21px -21px 17px;
+      }
+      .especialidad-foto { height: 190px; }
+    }
+
+    /* =========================================================
+       5. ESPECIALIDADES DE LA CASA
+       ========================================================= */
+    .especialidades {
+      background: var(--verde);
+      color: var(--blanco);
+    }
+
+    .especialidades .encabezado-seccion h2 { color: var(--crema); }
+    .especialidades .encabezado-seccion p { color: rgba(255,255,255,.78); }
+    .especialidades .etiqueta { color: var(--verde-oscuro); }
+
+    .rejilla-especialidades {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .especialidad {
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: var(--radio);
+      background: rgba(255,255,255,.08);
+    }
+
+    .especialidad .icono { font-size: 2.2rem; }
+    .especialidad h3 { margin: 10px 0 7px; color: var(--crema); font-size: 1.45rem; }
+    .especialidad p { margin: 0; color: rgba(255,255,255,.82); }
+    .especialidad .precio-especial { display: inline-block; margin-top: 15px; color: var(--amarillo); font: 800 1.1rem Arial, sans-serif; }
+
+    /* =========================================================
+       6. INFORMACIÓN DEL RESTAURANTE Y PIE DE PÁGINA
+       ========================================================= */
+    .informacion {
+      background: linear-gradient(135deg, #f5e4c2, #fffaf0);
+      text-align: center;
+    }
+
+    .informacion h2 { margin: 12px 0; color: var(--verde); font-size: clamp(2rem, 4vw, 2.8rem); }
+    .informacion p { max-width: 700px; margin: 0 auto; color: #604b37; }
+
+    .datos {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .dato {
+      padding: 10px 16px;
+      border: 1px solid rgba(113,60,32,.18);
+      border-radius: 999px;
+      background: rgba(255,255,255,.62);
+      font: 700 .86rem Arial, sans-serif;
+      color: var(--marron);
+    }
+
+    .aviso-precios { margin-top: 22px !important; font-size: .82rem; font-style: italic; }
+
+    .pie {
+      padding: 24px 0;
+      background: var(--verde-oscuro);
+      color: rgba(255,255,255,.85);
+      text-align: center;
+      font: .84rem Arial, sans-serif;
+    }
+
+    .pie strong { color: var(--amarillo); }
+
+    /* =========================================================
+       7. DISEÑO RESPONSIVO PARA TABLETAS Y CELULARES
+       ========================================================= */
+    @media (max-width: 850px) {
+      .rejilla-productos { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .navegacion { gap: 15px; }
+    }
+
+    @media (max-width: 640px) {
+      .contenedor { width: min(100% - 30px, 520px); }
+      .barra { min-height: 72px; }
+      .marca img { width: 52px; height: 52px; }
+      .marca-texto strong { font-size: 1rem; }
+      .marca-texto span { font-size: .58rem; }
+      .menu-movil { display: inline-block; }
+      .navegacion {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        padding: 18px 22px 22px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        background: var(--fondo);
+        border-bottom: 1px solid rgba(113,60,32,.15);
+        box-shadow: var(--sombra);
+      }
+      .navegacion.abierta { display: flex; }
+      .navegacion a { padding: 12px 0; border-bottom: 1px solid rgba(113,60,32,.1); }
+      .navegacion a:last-child { border-bottom: 0; }
+      .portada { padding: 70px 0 75px; }
+      .seccion { padding: 58px 0; }
+      .rejilla-productos, .rejilla-especialidades { grid-template-columns: 1fr; }
+      .producto { padding: 21px; }
+      .titulo-categoria { font-size: 1.35rem; }
+      .ilustracion-comida span { width: 58px; height: 58px; font-size: 1.7rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ENCABEZADO: modifica aquí el nombre y reemplaza logo.png por tu archivo de logotipo. -->
+  <header class="encabezado">
+    <div class="contenedor barra">
+      <a class="marca" href="#inicio" aria-label="Ir al inicio de Tradición Manabita">
+        <img src="logo.png" alt="Logotipo de Tradición Manabita">
+        <span class="marca-texto">
+          <strong>Tradición Manabita</strong>
+          <span>Sabor auténtico de Manabí</span>
+        </span>
+      </a>
+
+      <button class="menu-movil" id="boton-menu" aria-label="Abrir menú de navegación" aria-expanded="false">☰</button>
+
+      <nav class="navegacion" id="navegacion" aria-label="Navegación principal">
+        <a href="#inicio">Inicio</a>
+        <a href="#menu">Menú</a>
+        <a href="#especialidades">Especialidades</a>
+        <a href="#nosotros">Nosotros</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- BIENVENIDA -->
+    <section class="portada" id="inicio">
+      <div class="contenedor portada-contenido">
+        <span class="etiqueta">Cocina tradicional · Portoviejo, Ecuador</span>
+        <h1>El auténtico sabor de <span>Manabí</span></h1>
+        <p>Comida a leña como en los tiempos de antes, preparada con tradición y servida para compartir en familia.</p>
+        <a class="boton" href="#menu">Ver menú <span aria-hidden="true">↓</span></a>
+        <div class="ilustracion-comida" aria-label="Elementos de la cocina tradicional">
+          <span aria-hidden="true">🔥</span>
+          <span aria-hidden="true">🍌</span>
+          <span aria-hidden="true">🍲</span>
+          <span aria-hidden="true">🌿</span>
+        </div>
+        <div class="detalle-portada">Tradición en cada preparación</div>
+      </div>
+    </section>
+
+    <!-- MENÚ COMPLETO -->
+    <section class="seccion" id="menu">
+      <div class="contenedor">
+        <div class="encabezado-seccion">
+          <span class="etiqueta">Hecho con tradición</span>
+          <h2>Nuestro menú</h2>
+          <p>Descubre sabores de nuestra tierra, con recetas inspiradas en la cocina manabita.</p>
+        </div>
+
+        <!-- CATEGORÍA 1: para agregar productos, copia una tarjeta .producto y edita su contenido. -->
+        <div class="categoria">
+          <h3 class="titulo-categoria">☀️ Desayunos y sabores tradicionales</h3>
+          <div class="rejilla-productos">
+
+            <article class="producto">
+              <img class="producto-foto" src="https://www.nuevamujer.com/resizer/v2/EGTCR7LOMBER7ANLOAJPS3PBX4.jpg?auth=43b4e28e77383ecf5ac515b14b49aab19f8921be3e07a506b0f9698f2f465c1d&height=1200&smart=true&width=1200" alt="Fotografía referencial de Bolón Campesino" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+              <h4>Bolón Campesino</h4>
+              <span class="credito-foto">Foto referencial: <a href="https://www.nuevamujer.com/lifestyle/2025/08/29/desayunos-ecuatorianos-un-viaje-lleno-de-sabor-por-cada-region-del-pais/" target="_blank" rel="noopener noreferrer">Nueva Mujer</a></span>
+              <p>Bolón de verde majado, relleno de queso fresco o chicharrón, acompañado de café.</p>
+              <p class="ingredientes"><strong>Ingredientes:</strong> plátano verde, queso, chicharrón, café y sal.</p>
+              <!-- Modifica el precio aquí. -->
+              <span class="precio">$3,00</span>
+            </article>
+
+            <article class="producto">
+              <img class="producto-foto" src="https://img.eldiario.ec/upload/2026/03/17161D524C43476D15100F55504940701F161B1853444C791716-1200x800.webp" alt="Fotografía referencial de Tigrillo de la Abuela" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+              <h4>Tigrillo de la Abuela</h4>
+              <span class="credito-foto">Foto referencial: <a href="https://www.eldiario.ec/gastronomia/antojo-de-un-buen-desayuno-descubre-como-preparar-el-tigrillo-perfecto-en-pocos-minutos-06032026/" target="_blank" rel="noopener noreferrer">El Diario</a></span>
+              <p>Verde majado con huevo revuelto y queso, preparado al estilo tradicional manabita.</p>
+              <p class="ingredientes"><strong>Ingredientes:</strong> plátano verde, huevos, queso, cebolla y cilantro.</p>
+              <span class="precio">$3,50</span>
+            </article>
+
+            <article class="producto">
+              <img class="producto-foto" src="https://enmicocina.com/_next/image?q=60&url=%2Fapi%2Fmedia%2Ffile%2Fcorviche.jpg&w=1080" alt="Fotografía referencial de Corviche Tradicional" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+              <h4>Corviche Tradicional</h4>
+              <span class="credito-foto">Foto referencial: <a href="https://enmicocina.com/recetas/corviche" target="_blank" rel="noopener noreferrer">En mi cocina</a></span>
+              <p>Masa de verde rellena de pescado y maní, con una preparación llena de sabor costeño.</p>
+              <p class="ingredientes"><strong>Ingredientes:</strong> plátano verde, pescado, maní, cebolla y especias.</p>
+              <span class="precio">$2,00</span>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- CATEGORÍA 2 -->
+        <div class="categoria">
+          <h3 class="titulo-categoria">🔥 Platos fuertes de tradición</h3>
+          <div class="rejilla-productos">
+
+            <article class="producto">
+              <img class="producto-foto" src="https://www.recetasnestle.com.ec/sites/default/files/srh_recipes/b3acc8cba7897cde04cbb3c15ce598b9.jpg" alt="Fotografía referencial de Tonga Manabita de la Casa" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+              <h4>Tonga Manabita de la Casa</h4>
+              <span class="credito-foto">Foto referencial: <a href="https://www.recetasnestle.com.ec/recetas/tonga-manaba" target="_blank" rel="noopener noreferrer">Recetas Nestlé Ecuador</a></span>
+              <p>Arroz con pollo, salsa de maní y maduro, envuelto en hoja de plátano con sabor tradicional.</p>
+              <p class="ingredientes"><strong>Ingredientes:</strong> arroz, pollo, maní, plátano maduro, achiote y hoja de plátano.</p>
+              <span class="precio">$6,50</span>
+            </article>
+
+            <article class="producto">
+              <img class="producto-foto" src="https://whereyoueat.com/r_gallery_images/rgallery-33338/202507091311196505.png" alt="Fotografía referencial de Pollo Campesino a la Leña" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+              <h4>Pollo Campesino a la Leña</h4>
+              <span class="credito-foto">Foto referencial: <a href="https://whereyoueat.com/La-Posada-Restaurant-33338.html" target="_blank" rel="noopener noreferrer">WhereYouEat</a></span>
+              <p>Pollo asado a la leña, acompañado de arroz, patacones y ensalada fresca.</p>
+              <p class="ingredientes"><strong>Ingredientes:</strong> pollo, ajo, comino, arroz, plátano verde y vegetales.</p>
+              <span class="precio">$7,00</span>
+            </article>
+
+            <article class="producto">
+              <img class="producto-foto" src="https://eltipicoecuatoriano.com/wp-content/uploads/2022/11/maduro-con-queso.png" alt="Fotografía referencial de Maduro Asado con Queso" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+              <h4>Maduro Asado con Queso</h4>
+              <span class="credito-foto">Foto referencial: <a href="https://eltipicoecuatoriano.com/" target="_blank" rel="noopener noreferrer">El Típico Ecuatoriano</a></span>
+              <p>Plátano maduro asado a la leña, acompañado de queso fresco derretido.</p>
+              <p class="ingredientes"><strong>Ingredientes:</strong> plátano maduro y queso fresco.</p>
+              <span class="precio">$2,50</span>
+            </article>
+
+            <article class="producto">
+              <img class="producto-foto" src="https://recetacomidaecuatoriana.com/wp-content/uploads/2025/01/receta-seco-de-carne-ecuatoriano-sabor-y-tradicion-en-casa.jpg" alt="Fotografía referencial de Seco Criollo con Arroz" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+              <h4>Seco Criollo con Arroz</h4>
+              <span class="credito-foto">Foto referencial: <a href="https://recetacomidaecuatoriana.com/sierra/receta-seco-de-carne-ecuatoriano/" target="_blank" rel="noopener noreferrer">Receta Comida Ecuatoriana</a></span>
+              <p>Carne guisada con aliños tradicionales, servida con arroz y maduro.</p>
+              <p class="ingredientes"><strong>Ingredientes:</strong> carne de res, arroz, cebolla, tomate, pimiento y plátano maduro.</p>
+              <span class="precio">$6,00</span>
+            </article>
+
+          </div>
+        </div>
+
+        <!-- CATEGORÍA 3 -->
+        <div class="categoria">
+          <h3 class="titulo-categoria">🥤 Bebidas y acompañamientos</h3>
+          <div class="rejilla-productos">
+
+            <article class="producto">
+              <img class="producto-foto" src="https://itsonly.recipes/images/recipeimages/homemade-lemonade.webp" alt="Fotografía referencial de Limonada de la Casa" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+              <h4>Limonada de la Casa</h4>
+              <span class="credito-foto">Foto referencial: <a href="https://itsonly.recipes/view/homemade-lemonade" target="_blank" rel="noopener noreferrer">ItsOnly Recipes</a></span>
+              <p>Bebida refrescante preparada con limón natural, agua y un toque de azúcar.</p>
+              <p class="ingredientes"><strong>Ingredientes:</strong> limón, agua, azúcar y hielo.</p>
+              <span class="precio">$1,50</span>
+            </article>
+
+            <article class="producto">
+              <img class="producto-foto" src="https://fedecocina.net/static/33662ce058ec35db6ed547ab194761b6/0a45a/jugo-de-maracuy%C3%A1-1x1.jpg" alt="Fotografía referencial de Jugo Tropical de Maracuyá" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+              <h4>Jugo Tropical de Maracuyá</h4>
+              <span class="credito-foto">Foto referencial: <a href="https://fedecocina.net/receta/como-preparar-jugo-de-maracuya-47540934/" target="_blank" rel="noopener noreferrer">Fede Cocina</a></span>
+              <p>Jugo natural de maracuyá, preparado al momento para acompañar tus platos favoritos.</p>
+              <p class="ingredientes"><strong>Ingredientes:</strong> maracuyá, agua, azúcar y hielo.</p>
+              <span class="precio">$1,75</span>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ESPECIALIDADES DE LA CASA -->
+    <section class="seccion especialidades" id="especialidades">
+      <div class="contenedor">
+        <div class="encabezado-seccion">
+          <span class="etiqueta">Recomendados de la casa</span>
+          <h2>Especialidades que cuentan nuestra historia</h2>
+          <p>Dos preparaciones que representan el sabor y la esencia de nuestra cocina tradicional.</p>
+        </div>
+
+        <div class="rejilla-especialidades">
+          <article class="especialidad">
+            <img class="especialidad-foto" src="https://www.recetasnestle.com.ec/sites/default/files/srh_recipes/b3acc8cba7897cde04cbb3c15ce598b9.jpg" alt="Fotografía referencial de Tonga Manabita de la Casa" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+            <h3>Tonga Manabita de la Casa</h3>
+            <span class="credito-foto" style="color:rgba(255,255,255,.7)">Foto referencial: <a href="https://www.recetasnestle.com.ec/recetas/tonga-manaba" target="_blank" rel="noopener noreferrer">Recetas Nestlé Ecuador</a></span>
+            <p>Una combinación representativa de arroz, pollo, maní y maduro, envuelta en hoja de plátano. Un plato que conecta con la tradición gastronómica manabita.</p>
+            <span class="precio-especial">$6,50</span>
+          </article>
+
+          <article class="especialidad">
+            <img class="especialidad-foto" src="https://whereyoueat.com/r_gallery_images/rgallery-33338/202507091311196505.png" alt="Fotografía referencial de Pollo Campesino a la Leña" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.display='none'">
+            <h3>Pollo Campesino a la Leña</h3>
+            <span class="credito-foto" style="color:rgba(255,255,255,.7)">Foto referencial: <a href="https://whereyoueat.com/La-Posada-Restaurant-33338.html" target="_blank" rel="noopener noreferrer">WhereYouEat</a></span>
+            <p>Una preparación que refleja el concepto del restaurante: cocinar a leña y recuperar el estilo tradicional de nuestra cocina.</p>
+            <span class="precio-especial">$7,00</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- INFORMACIÓN DEL RESTAURANTE -->
+    <section class="seccion informacion" id="nosotros">
+      <div class="contenedor">
+        <span class="etiqueta">Nuestra esencia</span>
+        <h2>Una tradición para compartir</h2>
+        <p>En Tradición Manabita celebramos las raíces de nuestra tierra con platos inspirados en las recetas de antes, preparaciones a leña y sabores para disfrutar en familia.</p>
+        <div class="datos">
+          <span class="dato">📍 Portoviejo, Manabí, Ecuador</span>
+          <span class="dato">🍽️ Cocina tradicional manabita</span>
+          <span class="dato">🔥 Preparaciones a leña</span>
+          <span class="dato">👨‍👩‍👧‍👦 Para compartir en familia</span>
+        </div>
+        <p class="aviso-precios">Las fotografías son referenciales y se cargan desde sus sitios de origen; se requiere conexión a Internet para visualizarlas. Los precios publicados son referenciales y pueden estar sujetos a cambios.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- PIE DE PÁGINA: modifica el nombre si cambias la marca. -->
+  <footer class="pie">
+    <div class="contenedor">
+      <strong>Tradición Manabita</strong> · Sabor auténtico de Manabí
+      <br>
+      <span>© <span id="anio"></span> Todos los derechos reservados.</span>
+    </div>
+  </footer>
+
+  <script>
+    // Menú desplegable para teléfonos celulares.
+    const botonMenu = document.getElementById("boton-menu");
+    const navegacion = document.getElementById("navegacion");
+
+    botonMenu.addEventListener("click", () => {
+      const estaAbierto = navegacion.classList.toggle("abierta");
+      botonMenu.setAttribute("aria-expanded", estaAbierto);
+      botonMenu.textContent = estaAbierto ? "✕" : "☰";
+    });
+
+    // Cierra la navegación móvil al seleccionar una sección.
+    document.querySelectorAll(".navegacion a").forEach((enlace) => {
+      enlace.addEventListener("click", () => {
+        navegacion.classList.remove("abierta");
+        botonMenu.setAttribute("aria-expanded", "false");
+        botonMenu.textContent = "☰";
+      });
+    });
+
+    // Actualiza automáticamente el año del pie de página.
+    document.getElementById("anio").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
